@@ -4,18 +4,25 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    int Score = 0;
     public static GameManager Instance { get; private set; }
-// Write down your variables here
+
+    public int Score { get; private set; } = 0;
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
+        
     }
 
     public void IncrementScore()
     {
-        // TODO Increment Score 
-        Debug.Log("Score : "+ Score);
+        Score++;
+        Debug.Log("Score: " + Score);
     }
 }
